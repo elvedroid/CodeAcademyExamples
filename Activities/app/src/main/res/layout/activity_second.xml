@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SecondActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <!-- Разликата помеѓу layout_gravity и gravity е тоа што layout_gravity се однесува на
+        позицијата на елементот во одност на родителот, додека gravity се однесува на позицијата на
+        сите деца од елементот.
+        Пр. во случајов наместо android:layout_gravity="center" да ставаме на двете TextView, можеме
+        да ставеме android:gravity="center" на LinearLayout и однесувањето ќе биде исто.-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/hello" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </LinearLayout>
+
+</RelativeLayout>

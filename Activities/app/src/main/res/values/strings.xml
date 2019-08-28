@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Activities</string>
+    <string name="open_second_activity">Open second activity</string>
+    <string name="hello">Hello</string>
+    <string name="enter_name_hint">Enter your name…</string>
+</resources>

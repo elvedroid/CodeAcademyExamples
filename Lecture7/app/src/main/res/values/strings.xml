@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Lecture7</string>
+    <string name="error_title">Greshka</string>
+    <string name="error_msg">Se sluchi neshto!</string>
+    <string name="btn_ok">OK</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

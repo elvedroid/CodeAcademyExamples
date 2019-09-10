@@ -2,6 +2,12 @@
 
 ## Additional Links
 
+### Android Debugger
+
+[The Android Studio debugger](https://google-developer-training.github.io/android-developer-fundamentals-course-concepts-v2/unit-1-get-started/lesson-3-testing,-debugging,-and-using-support-libraries/3-1-c-the-android-studio-debugger/3-1-c-the-android-studio-debugger.html)
+
+[The Android Studio debugger - Practical](https://codelabs.developers.google.com/codelabs/android-training-using-debugger/#0)
+
 ### Lecture 3
 
 [Fragments](https://developer.android.com/guide/components/fragments)

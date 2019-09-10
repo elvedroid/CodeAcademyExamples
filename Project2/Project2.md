@@ -9,7 +9,7 @@
 Да се направи класа `MovieRepository` со статички метод `getAllMovies()` која ќе креира и враќа филмови од сите жанрови.
 
     public class MovieRepository {
-        static List<Movie> getAllMovies() {
+        public static List<Movie> getAllMovies() {
             List<Movie> movies = new ArrayList<>();
             // Тука да се додадат >10 филмови со различни жанрови
             return movies;

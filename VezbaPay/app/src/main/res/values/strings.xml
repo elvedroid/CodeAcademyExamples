@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Vezba Pay</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="price">Price</string>
+    <string name="date">DATE</string>
+    <string name="pay">PAY</string>
+
+
+
+    <string-array name="values">
+        <item>MKD</item>
+        <item>EUR</item>
+    </string-array>
+
+
+</resources>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/money_slika"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+
+
+
+    <EditText
+        android:layout_margin="5dp"
+        android:hint="@string/name"
+        android:id="@+id/etName"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+    </EditText>
+
+    <EditText
+        android:layout_margin="5dp"
+        android:hint="@string/surname"
+        android:background="@android:color/white"
+        android:id="@+id/etSurname"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+    </EditText>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_weight="2"
+            android:layout_marginEnd="5dp"
+            android:hint="@string/price"
+            android:background="@android:color/white"
+            android:id="@+id/etPrice"
+            android:layout_width="0dp"
+            android:inputType="numberDecimal"
+            android:layout_height="50dp"/>
+
+
+
+        <Spinner
+
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:id="@+id/spiner"
+            android:entries="@array/values"
+            android:layout_width="0dp"
+            android:layout_height="50dp">
+
+        </Spinner>
+
+
+    </LinearLayout>
+
+    <EditText
+        android:inputType="date"
+        android:layout_margin="5dp"
+        android:hint="@string/date"
+        android:background="@android:color/white"
+        android:id="@+id/etDate"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+    </EditText>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </View>
+
+
+
+    <Button
+        android:layout_margin="5dp"
+        android:text="@string/pay"
+        android:id="@+id/buttonPAY"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+    </Button>
+
+</LinearLayout>

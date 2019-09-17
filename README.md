@@ -61,3 +61,13 @@
 [Fragment Navigation Drawer](https://guides.codepath.com/android/Fragment-Navigation-Drawer)
 
 [Add a navigation drawer](https://developer.android.com/guide/navigation/navigation-ui#add_a_navigation_drawer)
+
+### Background Tasks
+
+[AsyncTask](https://google-developer-training.github.io/android-developer-fundamentals-course-concepts-v2/unit-3-working-in-the-background/lesson-7-background-tasks/7-1-c-asynctask-and-asynctaskloader/7-1-c-asynctask-and-asynctaskloader.html)
+
+[AsyncTask - Practical](https://codelabs.developers.google.com/codelabs/android-training-create-asynctask/index.html?index=..%2F..%2Fandroid-training#0)
+
+[Internet connection](https://google-developer-training.github.io/android-developer-fundamentals-course-concepts-v2/unit-3-working-in-the-background/lesson-7-background-tasks/7-2-c-internet-connection/7-2-c-internet-connection.html)
+
+[Android Processes, Threads Slidenerd Style](https://www.udemy.com/course/master-android-zero-to-hero/)

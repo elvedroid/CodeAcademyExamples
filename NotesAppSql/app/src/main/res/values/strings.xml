@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">NotesAppSql</string>
+    <string name="action_settings">Settings</string>
+    <string name="add_new_note_title">New Note</string>
+    <string name="enter_your_note">Enter your note!</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add Note</string>
+</resources>

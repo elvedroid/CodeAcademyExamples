@@ -74,4 +74,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return notes;
     }
+
+    public Note getNote(long id) {
+
+        String NOTE_QUERY_VO_PREVOD = "SELECT * notes WHERE id =?";
+        String NOTE_QUERY = "SELECT * FROM " + Note.TABLE_NAME + " WHERE " + Note.COLUMN_ID + "= ?";
+        String[] selectionArguments = new String[]{String.valueOf(id)};
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(NOTE_QUERY, selectionArguments);
+        Note note = null;
+        if (cursor.moveToFirst()) {
+            Integer noteId = cursor.getInt(cursor.getColumnIndex(Note.COLUMN_ID));
+            String date = cursor.getString(cursor.getColumnIndex(Note.COLUMN_DATE));
+            String desc = cursor.getString(cursor.getColumnIndex(Note.COLUMN_NOTE));
+            note = new Note(noteId, desc, date);
+        }
+
+        db.close();
+        cursor.close();
+
+        return note;
+    }
+
+    public void removeNote(long id) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        String NOTE_WHERE_CLAUSE = Note.COLUMN_ID + " = ?";
+        String[] selectionArguments = new String[]{String.valueOf(id)};
+
+        db.delete(Note.TABLE_NAME, NOTE_WHERE_CLAUSE, selectionArguments);
+
+        db.close();
+    }
 }

@@ -6,8 +6,12 @@ import com.example.notesappsql.model.Note;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.view.Menu;
@@ -17,6 +21,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    NotesAdapter adapter = null;
+    DatabaseHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +31,32 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        List<Note> allNotes = AppSingleton.getInstance(this).getDbHelper().getAllNotes();
+        AppSingleton instance = AppSingleton.getInstance(this);
+        dbHelper = instance.getDbHelper();
+        List<Note> allNotes = dbHelper.getAllNotes();
+
+        RecyclerView rvNotes = findViewById(R.id.rvNotes);
+        rvNotes.setLayoutManager(new LinearLayoutManager(this));
+
+        adapter = new NotesAdapter(allNotes);
+        rvNotes.setAdapter(adapter);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int pos = viewHolder.getAdapterPosition();
+                long id = adapter.getNoteId(pos);
+                dbHelper.removeNote(id);
+                adapter.removeNote(pos);
+            }
+        });
+
+        itemTouchHelper.attachToRecyclerView(rvNotes);
 
 
 
@@ -32,7 +64,14 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AddNoteFragment addNoteFragment = new AddNoteFragment();
+                AddNoteFragment addNoteFragment = new AddNoteFragment(new AddNoteFragment.AddNoteListener() {
+                    @Override
+                    public void onNoteAdded(long id) {
+                        Note note = dbHelper.getNote(id);
+                        adapter.addNote(note);
+                    }
+                });
+
                 addNoteFragment.show(getSupportFragmentManager(), null);
             }
         });

@@ -17,6 +17,17 @@ import com.example.notesappsql.model.Note;
 import java.util.Calendar;
 
 public class AddNoteFragment extends DialogFragment {
+
+    public interface AddNoteListener {
+        void onNoteAdded(long id);
+    }
+
+    public AddNoteListener addNoteListener;
+
+    public AddNoteFragment(AddNoteListener addNoteListener) {
+        this.addNoteListener = addNoteListener;
+    }
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -32,7 +43,13 @@ public class AddNoteFragment extends DialogFragment {
                         String noteDescription = editText.getText().toString();
                         Note noteToAdd = new Note(noteDescription);
 
-                        AppSingleton.getInstance(getContext()).getDbHelper().insertNote(noteToAdd);
+                        DatabaseHelper dbHelper = AppSingleton.getInstance(getContext()).getDbHelper();
+
+                        long id = dbHelper.insertNote(noteToAdd);
+
+                        if (addNoteListener != null) {
+                            addNoteListener.onNoteAdded(id);
+                        }
 
                     }
                 });

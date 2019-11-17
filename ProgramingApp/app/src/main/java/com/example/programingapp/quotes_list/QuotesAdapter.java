@@ -1,4 +1,4 @@
-package com.example.programingapp;
+package com.example.programingapp.quotes_list;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.programingapp.model.Quote;
+import com.example.programingapp.R;
+import com.example.programingapp.quotes_details.QuoteDetailFragment;
 
 import java.util.List;
 
@@ -41,9 +45,7 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.QuotesView
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                DetailFragment fragment = new DetailFragment();
+                QuoteDetailFragment fragment = new QuoteDetailFragment();
 
                 Bundle bundle = new Bundle();
                 bundle.putString("quoteId", quote.getId());
@@ -55,11 +57,6 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.QuotesView
                         .replace(R.id.frameLayout, fragment)
                         .addToBackStack("null")
                         .commit();
-
-
-
-
-
             }
         });
 
@@ -81,10 +78,6 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.QuotesView
             tvQuote =itemView.findViewById(R.id.en_textview);
             tvAuthor =itemView.findViewById(R.id.author_textview);
             tvRating =itemView.findViewById(R.id.rating_textview);
-
-
-
-
         }
     }
 }

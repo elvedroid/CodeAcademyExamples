@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".MainFragment">
+    tools:context=".quotes_list.QuotesListFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView

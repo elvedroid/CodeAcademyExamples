@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".DetailFragment">
+    tools:context=".quotes_details.QuoteDetailFragment">
 
     <TextView
         android:layout_width="wrap_content"

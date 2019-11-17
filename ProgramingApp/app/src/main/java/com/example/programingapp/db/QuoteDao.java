@@ -5,7 +5,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.programingapp.Quote;
+import com.example.programingapp.model.Quote;
 
 import java.util.List;
 

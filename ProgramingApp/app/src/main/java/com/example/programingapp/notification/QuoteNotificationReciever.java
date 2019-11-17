@@ -1,4 +1,4 @@
-package com.example.programingapp;
+package com.example.programingapp.notification;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -13,6 +13,10 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
+import com.example.programingapp.utils.ConvertUtil;
+import com.example.programingapp.model.Quote;
+import com.example.programingapp.R;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,6 +26,8 @@ import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import static com.example.programingapp.RetrofitClient.BASE_URL;
 
 public class QuoteNotificationReciever extends BroadcastReceiver {
 
@@ -53,7 +59,7 @@ public class QuoteNotificationReciever extends BroadcastReceiver {
         @Override
         protected Quote doInBackground(Void... voids) {
 
-            Uri uri = Uri.parse(MainActivity.BASE_URL + "quotes/random");
+            Uri uri = Uri.parse(BASE_URL + "quotes/random");
 
             Quote quotes = null;
 

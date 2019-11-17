@@ -1,5 +1,4 @@
-package com.example.programingapp;
-
+package com.example.programingapp.quotes_list;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,71 +13,56 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.example.programingapp.MainActivity;
+import com.example.programingapp.model.Quote;
+import com.example.programingapp.R;
+import com.example.programingapp.repo.QuotesRepo;
+
 import java.util.List;
 
+public class QuotesListFragment extends Fragment {
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class MainFragment extends Fragment {
-
-
-    public MainFragment() {
+    public QuotesListFragment() {
         // Required empty public constructor
     }
 
-
-    ProgressBar progressBar;
-
-    RecyclerView recyclerView;
-
-    View rootView;
+    private View rootView;
+    private RecyclerView recyclerView;
+    private ProgressBar progressBar;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        MainActivity.QuotesAsyncTask quotesAsyncTask = new MainActivity.QuotesAsyncTask(
-                getContext(),
-                new GetQuotesListener(){
-
+        QuotesRepo quotesRepo = QuotesRepo.getInstance(getContext());
+        quotesRepo.getQuotes(new GetQuotesListener() {
             @Override
-            public void loadQuotes(List<Quote> quotes) {
+            public void onSuccess(List<Quote> quotes) {
                 QuotesAdapter adapter = new QuotesAdapter(quotes, getFragmentManager());
                 recyclerView.setAdapter(adapter);
                 progressBar.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
             }
-        });
 
-        quotesAsyncTask.execute();
+            @Override
+            public void onError(Exception e) {
+                progressBar.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
         if(rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_main, container, false);
         }
 
         progressBar = rootView.findViewById(R.id.progresBar);
-
         recyclerView = rootView.findViewById(R.id.rvRecyclerView);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
-
-
-
 
         // Inflate the layout for this fragment
         return rootView;
-
     }
-
-
-
 }

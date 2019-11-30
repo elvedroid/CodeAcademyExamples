@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<SwitchPreference android:key="key_theme"
+    android:summaryOn="Dark Theme"
+    android:summaryOff="Light Theme"
+    android:title="Light Theme">
+</SwitchPreference>
+    <SwitchPreference android:key="key_lang"
+        android:summaryOn="English"
+        android:summaryOff="Makedonski"
+        android:title="@string/language">
+    </SwitchPreference>
+</PreferenceScreen>

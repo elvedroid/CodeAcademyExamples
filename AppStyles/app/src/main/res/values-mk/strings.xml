@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AppStyles</string>
+    <string name="log_in">Najavi se</string>
+    <string name="register">Registriraj se</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Zdravo prazen Fragment</string>
+    <string name="hello_world">Zdravo Svetu!</string>
+    <string name="language">Jazik</string>
+</resources>

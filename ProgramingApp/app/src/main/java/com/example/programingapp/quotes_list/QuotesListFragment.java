@@ -1,29 +1,30 @@
 package com.example.programingapp.quotes_list;
 
-import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.programingapp.MainActivity;
-import com.example.programingapp.model.Quote;
-import com.example.programingapp.R;
-import com.example.programingapp.repo.QuotesRepo;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.programingapp.R;
+import com.example.programingapp.model.Quote;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -41,7 +42,7 @@ public class QuotesListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if(rootView == null) {
+        if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_main, container, false);
         }
 
@@ -74,6 +75,39 @@ public class QuotesListFragment extends Fragment {
         });
         viewModel.loadQuotes();
         // Inflate the layout for this fragment
+
         return rootView;
+    }
+
+    private void addData() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        Map<String, Object> quote = new HashMap<>();
+        quote.put("id", "12345");
+        quote.put("author", "Elvedin");
+        quote.put("quote", "Nekoj quote");
+        quote.put("rating", 4.0);
+        quote.put("numberOfVotes", 1);
+
+        db.collection("Quotes")
+                .add(quote)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d("QuotesList", "Success");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("QuotesList", e.getMessage());
+                    }
+                });
+
+
+        Map<String, Object> user = new HashMap<>();
+        user.put("first", "Ada");
+        user.put("last", "Lovelace");
+        user.put("born", 1815);
     }
 }

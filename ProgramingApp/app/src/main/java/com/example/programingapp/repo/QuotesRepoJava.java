@@ -17,18 +17,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class QuotesRepo {
+public class QuotesRepoJava {
 
-    private static QuotesRepo INSTANCE;
+    private static QuotesRepoJava INSTANCE;
     private QuoteDao quoteDao;
     private QuotesApi quotesApi;
 
-    private QuotesRepo() {
+    private QuotesRepoJava() {
     }
 
-    public static QuotesRepo getInstance(Context context) {
+    public static QuotesRepoJava getInstance(Context context) {
         if (INSTANCE == null) {
-            INSTANCE = new QuotesRepo();
+            INSTANCE = new QuotesRepoJava();
             QuoteDao quoteDao = QuoteDatabase.getQuoteDatabase(context).quoteDao();
             INSTANCE.setQuoteDao(quoteDao);
             QuotesApi quotesApi = RetrofitClient.getInstance().getQuotesApi();
@@ -51,30 +51,6 @@ public class QuotesRepo {
             @Override
             public void onFailure(Call<Quote> call, Throwable t) {
                 listener.onError((Exception) t);
-            }
-        });
-
-    }
-
-    public void getQuotes(final GetQuotesListener listener) {
-
-        quotesApi.getAllQuotes().enqueue(new Callback<List<Quote>>() {
-            @Override
-            public void onResponse(Call<List<Quote>> call, final Response<List<Quote>> response) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        quoteDao.insertQuotes(response.body());
-                    }
-                }).start();
-
-                listener.onSuccess(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<List<Quote>> call, Throwable t) {
-                DatabaseQuotesAsyncTask asyncTask = new DatabaseQuotesAsyncTask(quoteDao, listener);
-                asyncTask.execute();
             }
         });
 

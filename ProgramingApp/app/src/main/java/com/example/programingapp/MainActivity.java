@@ -6,7 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.programingapp.notification.RandomQuoteAlarm;
+import com.example.programingapp.quotes_details.QuoteDetailFragment;
 import com.example.programingapp.quotes_list.QuotesListFragment;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,5 +27,7 @@ public class MainActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.frameLayout, fragment)
                 .commit();
+
+
     }
 }

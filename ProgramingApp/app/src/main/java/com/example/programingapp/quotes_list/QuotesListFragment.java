@@ -1,13 +1,10 @@
 package com.example.programingapp.quotes_list;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,10 +15,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.programingapp.MainActivity;
 import com.example.programingapp.model.Quote;
 import com.example.programingapp.R;
-import com.example.programingapp.repo.QuotesRepo;
 
 import java.util.List;
 

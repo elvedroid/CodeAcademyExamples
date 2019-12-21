@@ -1,15 +1,14 @@
 package com.example.programingapp.quotes_list;
 
 import android.app.Application;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.programingapp.model.Quote;
 import com.example.programingapp.repo.QuotesRepo;
+import com.example.programingapp.repo.QuotesRepoJava;
 
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class QuotesListViewModel extends AndroidViewModel {
 
     public void loadQuotes() {
         progressBar.setValue(true);
-        QuotesRepo quotesRepo = QuotesRepo.getInstance(getApplication());
+        QuotesRepo quotesRepo = QuotesRepo.Companion.getInstance(getApplication());
         quotesRepo.getQuotes(new GetQuotesListener() {
             @Override
             public void onSuccess(List<Quote> quoteList) {

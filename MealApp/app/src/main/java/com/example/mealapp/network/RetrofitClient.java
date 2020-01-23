@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
     private static MealApi mealApi;
 
-    private static MealApi getMealApi() {
+    public static MealApi getMealApi() {
         if (mealApi == null) {
             createMealApi();
         }

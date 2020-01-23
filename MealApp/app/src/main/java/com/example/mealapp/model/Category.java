@@ -1,6 +1,8 @@
 package com.example.mealapp.model;
 
-public class Category {
+import java.io.Serializable;
+
+public class Category implements Serializable {
     private String idCategory;
     private String strCategory;
     private String strCategoryThumb;

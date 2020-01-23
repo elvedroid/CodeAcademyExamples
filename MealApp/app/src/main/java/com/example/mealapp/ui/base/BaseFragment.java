@@ -16,4 +16,6 @@ public abstract class BaseFragment extends Fragment {
             activity.setTitle(title);
         }
     }
+
+
 }

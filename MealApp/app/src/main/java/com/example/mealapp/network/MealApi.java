@@ -7,6 +7,6 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface MealApi {
-    @GET("/" + BuildConfig.AUTH_KEY + "/categories.php")
+    @GET(BuildConfig.AUTH_KEY + "/categories.php")
     Call<GetCategoriesResponse> getCategories();
 }

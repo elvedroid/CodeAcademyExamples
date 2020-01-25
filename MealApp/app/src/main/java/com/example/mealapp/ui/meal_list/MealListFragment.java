@@ -7,14 +7,27 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mealapp.R;
 import com.example.mealapp.model.Category;
+import com.example.mealapp.model.GetMealsByCategoryResponse;
+import com.example.mealapp.model.Meal;
+import com.example.mealapp.network.RetrofitClient;
 import com.example.mealapp.ui.base.BaseFragment;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MealListFragment extends BaseFragment {
 
     public static final String TAG = MealListFragment.class.getSimpleName();
+
+    private RecyclerView rvMeals;
 
     @Nullable
     @Override
@@ -27,6 +40,22 @@ public class MealListFragment extends BaseFragment {
 
         setTitle(category.getStrCategory());
 
+        rvMeals = rootView.findViewById(R.id.rvMeals);
+        rvMeals.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        RetrofitClient.getMealApi().getMealsByCategory(category.getStrCategory()).enqueue(new Callback<GetMealsByCategoryResponse>() {
+            @Override
+            public void onResponse(Call<GetMealsByCategoryResponse> call, Response<GetMealsByCategoryResponse> response) {
+                List<Meal> meals = response.body().getMeals();
+                MealsAdapter adapter = new MealsAdapter(meals);
+                rvMeals.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<GetMealsByCategoryResponse> call, Throwable t) {
+
+            }
+        });
 
 
         return rootView;
